@@ -95,8 +95,8 @@ public abstract class AbstractTree<E> implements Tree<E> {
 	{                                                                    //
 		printPrefix(level, control);                                     //
 		System.out.println();                                            //
-		printPrefix(level, control);                                     //
-		System.out.println("__("+root.getElement()+")");                 //
+		printPrefix(level, control);                                     //										 
+		System.out.println("__"+root.getElement()+")");           //              
 		control[level]--;                                                //
 		int nc = this.numChildren(root);                                 //
 		control[level+1] = nc;                                           //
@@ -114,4 +114,5 @@ public abstract class AbstractTree<E> implements Tree<E> {
 				System.out.print("   |");                                //
 	}                                                                    //
     ///////////////////////////////////////////////////////////////////////
+	
 }
