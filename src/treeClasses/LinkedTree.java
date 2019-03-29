@@ -21,18 +21,6 @@ public class LinkedTree<E> extends AbstractTree<E> implements Cloneable {
 		size = 0; 
 	}
 	
-	private Node<E> validate(Position<E> p) throws IllegalArgumentException { 
-		if (!(p instanceof Node<?>)) 
-			throw new IllegalArgumentException("Invalid position type for this implementation."); 
-		Node<E> np = (Node<E>) p; 
-		if (np.getParent() == np)
-			throw new IllegalArgumentException("Target position is not part of a tree.");
-		
-		// the following validates that p is a position in this tree
-		if (np.getOwnerTree() != this)
-			throw new IllegalArgumentException("Target position is not part of the tree.");	
-		return np; 
-	}
 	
 	@Override
 	public Position<E> root() {
@@ -98,6 +86,19 @@ public class LinkedTree<E> extends AbstractTree<E> implements Cloneable {
 		return nuevo; 
 	}
 	
+	private Node<E> validate(Position<E> p) throws IllegalArgumentException { 
+		if (!(p instanceof Node<?>)) 
+			throw new IllegalArgumentException("Invalid position type for this implementation."); 
+		Node<E> np = (Node<E>) p; 
+		if (np.getParent() == np)
+			throw new IllegalArgumentException("Target position is not part of a tree.");
+		
+		// the following validates that p is a position in this tree
+		if (np.getOwnerTree() != this)
+			throw new IllegalArgumentException("Target position is not part of the tree.");	
+		return np; 
+	}
+
 	public E remove(Position<E> p) throws IllegalArgumentException { 
 		Node<E> ntd = validate(p); 
 		E etr = ntd.getElement(); 
@@ -119,11 +120,16 @@ public class LinkedTree<E> extends AbstractTree<E> implements Cloneable {
 				childNTD.setParent(parent); 
 			}	
 		}
+//		parent.setChildren(ntd.getChildren());
+//		parent.setChildren(parent.getChildren());
+//		ntd.clear();
 		
 		/*******************************************************/
 		// SOME MISSING CODE HERE -- DISCOVER IT AN ADD... 
 		// AS SPECIFIED IN EXERCISE 4. 
-		
+		for(int i =0;i<parent.getChildren().size();i++) {
+			if(parent.getChildren().get(i)==ntd) parent.getChildren().remove(i);
+		}
 		
 		// discard the removed node
 		ntd.discard(); 
