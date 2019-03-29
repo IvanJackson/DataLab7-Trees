@@ -7,7 +7,7 @@ import treeInterfaces.Position;
 
 public class TreeTester4 {
 
-	public static void main(String[] args) { 
+	public static void main(String[] args) throws CloneNotSupportedException { 
 		LinkedBinaryTree<Integer> t = Utils.buildExampleTreeAsLinkedBinaryTree(); 
 
 		// display content as a tree
@@ -15,6 +15,9 @@ public class TreeTester4 {
 		
 		// display elements as a list
 		Utils.displayTreeElements("The elements of the tree are: ", t);
+		
+		LinkedBinaryTree<Integer> tClone = t.clone();
+		Utils.displayTree("The structure of the tree is: ", tClone);
 		
 	}
 
