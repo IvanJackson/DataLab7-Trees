@@ -1,5 +1,7 @@
 package labUtils;
 
+import java.util.Iterator;
+
 import treeClasses.LinkedBinaryTree;
 import treeClasses.LinkedTree;
 import treeInterfaces.Position;
@@ -53,6 +55,46 @@ public class Utils {
 		t.addRight(p40, 45);
 		return t; 
 	}
+
+	public static <E> void displayIter(String msg, Iterator<E> iter) { 
+	    System.out.println(msg); 
+	    while (iter.hasNext()) 
+	         System.out.println(iter.next()); 
+	}
+
+	public static LinkedTree<Character> buildTrieAsLinkedTree() { 
+		   String[] words = {"sal", "sala", "salado", "salto", "si", "u", "un", "uno"}; 
+
+		   /*
+		   String[] words = {"aleluya", "aleluyado", "aleta", "aletas", "alerta", 
+		        "alertado", "altercado", "altercados", "altura", "alturo", "alturito", 
+		         "balacera", "bala", "balas", "bala", "balon", "barato"};
+		   */ 
+		        
+		   LinkedTree<Character> t = new LinkedTree<>(); 
+		   Position<Character> p = t.addRoot('['); 
+		   for (String s : words)
+		    addWordToTrie(t, p, s, 0);   // auxiliary method below
+		            
+		   return t; 
+		}
+		    
+		private static void addWordToTrie(LinkedTree<Character> t, 
+		        Position<Character> r, String s, int index) {
+		   if (index == s.length()) 
+		    t.addChild(r,  ']'); 
+		   else { 
+		      Position<Character> pcc = null;   // position in children of r containing s[index] 
+		    for (Position<Character> p : t.children(r))
+		       if (p.getElement().equals(s.charAt(index))) pcc = p; 
+		    if (pcc == null)
+		       r = t.addChild(r, s.charAt(index)); 
+		    else 
+		       r = pcc;
+		    addWordToTrie(t, r, s, index+1); 
+
+		   }
+		}
 
 //3,4,6,7
 }
