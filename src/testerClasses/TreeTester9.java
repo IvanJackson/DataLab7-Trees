@@ -12,7 +12,7 @@ public class TreeTester9 {
         Utils.displayTree("The structure of the tree is: ", t);
 
         // the following displays those elements in nodes of t that have only one child
-        PathContentIterator<Character> iter = new PathContentIterator<>(t); 
+        PathContentIterator<Character> iter = new PathContentIterator<Character>(t); 
         Utils.displayIter("Strings formed by elements in paths from root to external nodes.", iter);
 
     }

@@ -2,40 +2,49 @@ package iterators;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.NoSuchElementException;
 
 import pair.Pair;
 import treeClasses.LinkedTree;
 import treeInterfaces.Position;
 
-public class LevelsCountPairIterator<E> 
-implements Iterator<Pair<Integer, Integer>>{
+public class LevelsCountPairIterator<E> implements Iterator<Pair<Integer,Integer>> {
+	
+	private ArrayList<Pair<Integer,Integer>> list = new ArrayList<>();  
+	private Iterator<Pair<Integer,Integer>> iter; 
+	private Pair<Integer,Integer> last = null; 
+	private LinkedTree<E> t;
+	
+	public LevelsCountPairIterator(LinkedTree<E> t) {
+		this.t = t;
+		this.list.add(new Pair<Integer, Integer>(0, 1));
+		if(!t.isEmpty()) {
+			ArrayList<Integer> arr = countSubTree(this.t.root(), 1);
+			for (Integer i : arr) System.out.println(i);
+			this.iter = this.list.iterator();
+		}
+	}
+	
+	private ArrayList<Integer> countSubTree(Position<E> p, int n) {
+		ArrayList<Integer> arr = new ArrayList<>();
+		int children = this.t.numChildren(p);
+		arr.add(children);
+		n++;
+		for (Position<E> s : this.t.children(p)) {
+			countSubTree(s, n);
+		}
+		return arr;
+	}
+	
+	@Override
+	public boolean hasNext() {
+		return iter.hasNext(); 
+	}
 
-   private int level = 0;
-   ArrayList<Integer> list = new ArrayList<>(); 
-    
-   public LevelsCountPairIterator(LinkedTree<E> t) { 
-    if (!t.isEmpty()) 
-       fill(t, t.root(), 0); 
-   }
-
-   // fill list using a preorder traversal of tree so that it ends 
-   // having size equal to the number of levels in t, and where its
-   // i-th element is the number of nodes at level i. 
-   private void fill(LinkedTree<E> t, Position<E> r, int level) { 
-      // ADD CODE HERE.... TO PROPERLY FILL LIST
-
-   } 
-
-   public boolean hasNext() {
-    return level < list.size(); 
-   }
-
-   public Pair<Integer, Integer> next() {
-    if (!hasNext()) throw new NoSuchElementException("No more pairs."); 
-    Pair<Integer, Integer> p = new Pair<>(level, list.get(level)); 
-    level++; 
-    return p;
-   }
-
+	@Override
+	public Pair<Integer, Integer> next() {
+		last = iter.next();   
+		return last;
+	}
 }
+
+

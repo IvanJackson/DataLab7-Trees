@@ -1,7 +1,5 @@
 package testerClasses;
 
-import java.util.ArrayList;
-
 import labUtils.Utils;
 import treeClasses.LinkedTree;
 import treeInterfaces.Position;
@@ -14,8 +12,6 @@ import treeInterfaces.Position;
 public class TreeTester1 {
 	public static void main(String[] args) throws CloneNotSupportedException { 
 		LinkedTree<String> t = new LinkedTree<>(); 
-		LinkedTree<String> tEmpty = new LinkedTree<>();
-		LinkedTree<String> tCloneOfEmpty = tEmpty.clone();
 		LinkedTree<String> tCorrectClone;
 		
 		

@@ -28,6 +28,5 @@ public class TreeTester7 {
         // display content of t after removing the nodes having only one child
         Utils.displayTree("The structure of the tree after removing nodes with only one child: ", t);
     }
-
 }
 

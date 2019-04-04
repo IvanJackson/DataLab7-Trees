@@ -24,13 +24,13 @@ public class HeapTester1 {
  
 	}
 
-	private static void add(Heap t, Integer e) { 
+	private static void add(Heap<Integer> t, Integer e) { 
 		System.out.println("\nHeap content after adding element " + e); 
 		t.add(e); 
 		t.display(); 
 	}
 	
-	private static void removeMin(Heap t) { 
+	private static void removeMin(Heap<Integer> t) { 
 		System.out.println("\nHeap content after removing element " + t.removeMin()); 
 		t.display(); 
 	}

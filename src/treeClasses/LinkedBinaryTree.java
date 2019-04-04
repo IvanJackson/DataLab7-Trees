@@ -1,8 +1,5 @@
 package treeClasses;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-
 import treeInterfaces.Position;
 
 public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> implements Cloneable{
@@ -228,7 +225,7 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> implements Clonea
 	private static class Node<E> implements Position<E> { 
 		private E element; 
 		private Node<E> parent, left, right; 
-		public Node() {}
+		
 		public Node(E element, Node<E> parent, Node<E> left, Node<E> right) { 
 			this.element = element; 
 			this.parent = parent; 
@@ -255,9 +252,6 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> implements Clonea
 		}
 		public void setRight(Node<E> right) {
 			this.right = right;
-		}
-		public void setElement(E element) {
-			this.element = element;
 		}
 		
 		public void discard() { 

@@ -1,7 +1,6 @@
 package treeClasses;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import treeInterfaces.BinaryTree;
 import treeInterfaces.Position;
 

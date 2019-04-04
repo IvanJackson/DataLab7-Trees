@@ -2,7 +2,6 @@ package testerClasses;
 
 import labUtils.Utils;
 import treeClasses.LinkedBinaryTree;
-import treeInterfaces.Position;
 
 public class ExampleTreeBuilder2 {
 

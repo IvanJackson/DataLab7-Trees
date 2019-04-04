@@ -42,11 +42,13 @@ public class ElementsIterator<E> implements Iterator<E> {
     } 
 
     public void remove() { 
-        if (lastPosition == null) 
-            throw new IllegalStateException("Invalid to remove");
-        else {
-        	list.remove(lastPosition);
-        	lastPosition=list.get(0);
-    	}
-    } 
+		if (lastPosition == null) 
+			throw new IllegalStateException("Invalid to remove");
+		for (Position<E> p : t.positions()) {
+			if (p == lastPosition && t.numChildren(p) == 1) {
+				this.t.remove(p);
+				lastPosition = null;
+			}
+		}
+	} 
 }
